@@ -44,7 +44,7 @@ const Todo = ({ text, editTodo, deleteTodoAction,completeTodoAction, id, complet
     };
 
     return (
-        <div className='p-3 flex justify-between items-center bg-[#B380DA] border-[2px] cursor-pointer border-black rounded-[12px] hover:border-b-[6px] transition-all'>
+        <div className='p-3 flex lg:flex-row flex-col lg:justify-between gap-2 lg:items-center bg-[#B380DA] border-[1px] cursor-pointer border-black rounded-[12px] hover:border-b-[6px] transition-all'>
             {isEditing ? (
                 <input
                     type='text'
@@ -63,26 +63,26 @@ const Todo = ({ text, editTodo, deleteTodoAction,completeTodoAction, id, complet
                     className='font-bold outline-none w-full bg-transparent'
                 />
             ) : (
-                <p className={`font-bold ${completed ? 'line-through' : ''}`}>{text}</p>
+                <p className={`font-medium max-w-[400px] ${completed ? 'line-through' : ''}`}>{text}</p>
             )}
             <div className='flex gap-2 items-center'>
                 <div
-                    className={`p-2 border border-black rounded-lg hover:border-b-4 transition-all duration-150 active:scale-90 ${completed ? 'text-green-500' : 'text-gray-500'}`}
+                    className={`p-2 border border-black rounded-lg hover:border-b-4 transition-all duration-150 active:scale-90 ${completed ? 'text-black-500 bg-yellow-400' : 'text-black-400'}`}
                     onClick={handleToggleComplete}
                 >
-                    {completed ? <IoCheckmarkDoneSharp className='font-bold' size={20} /> : <IoCheckmarkCircleOutline className='font-bold' size={20} />}
+                    {completed ? <IoCheckmarkDoneSharp className='font-bold lg:text-[1.2rem] text-[1rem]'  /> : <IoCheckmarkCircleOutline className='font-bold' />}
                 </div>
                 <div
                     className='p-2 border border-black bg-[#7FBC95] rounded-lg hover:border-b-4 transition-all duration-150 active:scale-90'
                     onClick={isEditing ? handleSaveEdit : handleEdit}
                 >
-                    {isEditing ? <IoCheckmarkCircleOutline className='font-bold' size={20} /> : <MdOutlineModeEditOutline className='font-bold' size={20} />}
+                    {isEditing ? <IoCheckmarkCircleOutline className='font-bold lg:text-[1.2rem] text-[1rem]'  /> : <MdOutlineModeEditOutline className='font-bold' />}
                 </div>
                 <div
                     className='p-2 border border-black bg-[#E06B6B] rounded-lg hover:border-b-4 transition-all duration-150 active:scale-90'
                     onClick={handleDelete}
                 >
-                    <FaRegTrashAlt className='font-bold' size={20} />
+                    <FaRegTrashAlt className='font-bold lg:text-[1.2rem] text-[1rem]'  />
                 </div>
             </div>
         </div>

@@ -40,9 +40,9 @@ const TodoList = () => {
 
     return (
         <div className='space-y-7'>
-            <div className='flex items-center gap-3'>
+            <div className='flex lg:flex-row flex-col lg:items-center gap-3'>
                 <div className='flex flex-1 items-center rounded-[8px] h-[50px] border-[2px] border-black'>
-                    <input type="text" value={inputText} onChange={(e) => handleInputChange(e)} className='h-full outline-none font-bold text-md bg-[#fbcf67] px-4 rounded-[6px] w-full flex-1' placeholder='Search a tasks...' />
+                    <input type="text" value={inputText} onChange={(e) => handleInputChange(e)} className='h-full py-3 outline-none placeholder:text-[#00000080] font-bold text-md bg-[#fbcf67] px-4 rounded-[6px] w-full flex-1' placeholder='Create a tasks...' />
                 </div>
                 <button onClick={addNewTodo} className='px-[30px] bg-[#7FBC95] py-3  border-[2.2px] border-black rounded-[8px] active:scale-95 font-medium duration-150 hover:border-b-[5px] hover:border-r-[2px] transition-all'>
                     New task
