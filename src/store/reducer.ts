@@ -1,6 +1,6 @@
 import { ADD_TODO, DELETE_TODO, EDIT_TODO, TodoType, TodoActionTypes, COMPLETE_TODO } from "./action";
 
-// Load initial todos from local storage or use empty array
+// Load initial todos from local storage or empty array
 const storedTodos = localStorage.getItem('todos');
 const initialTodos: TodoType[] = storedTodos ? JSON.parse(storedTodos) : [];
 

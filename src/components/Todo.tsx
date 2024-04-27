@@ -6,7 +6,7 @@ import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { completeTodoAction, deleteTodoAction, editTodo } from '../store/action';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-
+import toast from "react-hot-toast"
   interface TodoType {
     id: number;
     text: string;
@@ -20,6 +20,9 @@ const Todo = ({ text, editTodo, deleteTodoAction,completeTodoAction, id, complet
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(text);
+  const notifyDelete = () => toast("Task Deleted",{icon:<FaRegTrashAlt className='text-red-500' />});
+  const notifySave = () => toast("Saved Changes 📝");
+  const notifyComplete = () => toast("Task Completed \nGood work 👍🏼");
 
   const handleEdit = () => {
         setIsEditing(true);
@@ -28,6 +31,7 @@ const Todo = ({ text, editTodo, deleteTodoAction,completeTodoAction, id, complet
     const handleSaveEdit = () => {
         dispatch(editTodo(id, editedText));
         setIsEditing(false);
+        notifySave();
     };
 
     const handleCancelEdit = () => {
@@ -37,10 +41,13 @@ const Todo = ({ text, editTodo, deleteTodoAction,completeTodoAction, id, complet
 
     const handleDelete = () => {
         dispatch(deleteTodoAction(id));
+        notifyDelete();
     };
 
     const handleToggleComplete = () => {
-        dispatch(completeTodoAction( !completed, id));
+        dispatch(completeTodoAction(!completed, id));
+        if (completed === false)
+            notifyComplete();
     };
 
     return (

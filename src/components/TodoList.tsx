@@ -5,11 +5,15 @@ import { addTodo, deleteTodoAction, editTodo, completeTodoAction } from '../stor
 import { ChangeEvent, useState } from 'react';
 import Todo from './Todo';
 import { TodoType } from '../store/action';
+import toast from "react-hot-toast"
 
 const TodoList = () => {
     const dispatch = useDispatch();
     const [inputText, setInputText] = useState<string>('');
     const todos = useSelector((state: RootState) => state.todoReducer.todos);
+
+    const notifyAdd = () => toast("New task created");
+    
 
     useEffect(() => {
         const storedTodos = localStorage.getItem('todos');
@@ -28,10 +32,12 @@ const TodoList = () => {
         const newTodo: TodoType = {
             id: Date.now(),
             text: inputText.trim()
+
         };
 
         dispatch(addTodo(newTodo));
         setInputText('');
+        notifyAdd();
     }
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
