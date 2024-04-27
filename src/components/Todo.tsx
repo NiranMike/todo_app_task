@@ -79,7 +79,7 @@ const Todo = ({ text, editTodo, deleteTodoAction,completeTodoAction, id, complet
                     {isEditing ? <IoCheckmarkCircleOutline className='font-bold lg:text-[1.2rem] text-[1rem]'  /> : <MdOutlineModeEditOutline className='font-bold' />}
                 </div>
                 <div
-                    className='p-2 border border-black bg-[#E06B6B] rounded-lg hover:border-b-4 transition-all duration-150 active:scale-90'
+                    className='p-2 border border-black bg-red-500 rounded-lg hover:border-b-4 transition-all duration-150 active:scale-90'
                     onClick={handleDelete}
                 >
                     <FaRegTrashAlt className='font-bold lg:text-[1.2rem] text-[1rem]'  />

@@ -19,6 +19,7 @@ const todoReducer = (state = initialState, action: TodoActionTypes): { todos: To
                 todo.id === action.payload.id ? { ...todo, text: action.payload.newText } : todo
             );
             localStorage.setItem('todos', JSON.stringify(editedTodos));
+            
             return { ...state, todos: editedTodos };
         case DELETE_TODO:
             const updatedTodos = state.todos.filter(todo => todo.id !== action.payload.id);

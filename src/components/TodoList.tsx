@@ -49,6 +49,9 @@ const TodoList = () => {
                 </button>
             </div>
             <div className='w-full bg-black h-[1px]'></div>
+            {todos?.length === 0 &&(
+                <div>No Available Task</div>
+            )}
             {todos?.map(todo => (
                 <Todo
                     key={todo.id}
