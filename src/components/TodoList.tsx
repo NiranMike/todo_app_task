@@ -12,7 +12,7 @@ const TodoList = () => {
     const [inputText, setInputText] = useState<string>('');
     const todos = useSelector((state: RootState) => state.todoReducer.todos);
 
-    const notifyAdd = () => toast("New task created");
+    const notifyAdd = () => toast("New task created", {duration:1000});
     
 
     useEffect(() => {
@@ -28,11 +28,17 @@ const TodoList = () => {
 
     const addNewTodo = () => {
         if (inputText.trim() === '') return;
-
+        let currentDate = new Date()
+        const formatedDate = currentDate.toLocaleDateString("en-US", {
+            weekday: "short",
+            year: "numeric",
+            month: "short",
+            day: "2-digit"
+        });
         const newTodo: TodoType = {
             id: Date.now(),
-            text: inputText.trim()
-
+            text: inputText.trim(),
+            createdDate: formatedDate,
         };
 
         dispatch(addTodo(newTodo));
@@ -43,6 +49,7 @@ const TodoList = () => {
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setInputText(e.target.value);
     }
+
 
     return (
         <div className='space-y-7'>
@@ -59,15 +66,19 @@ const TodoList = () => {
                 <div>No Available Task</div>
             )}
             {todos?.map(todo => (
-                <Todo
-                    key={todo.id}
-                    id={todo.id}
-                    text={todo.text}
-                    completed={todo.completed || false} 
-                    editTodo={editTodo}
-                    deleteTodoAction={deleteTodoAction}
-                    completeTodoAction={completeTodoAction} 
-                />
+                <>
+                    <Todo
+                        key={todo.id}
+                        id={todo.id}
+                        text={todo.text}
+                        completed={todo.completed || false} 
+                        editTodo={editTodo}
+                        deleteTodoAction={deleteTodoAction}
+                        completeTodoAction={completeTodoAction} 
+                        createdDate={todo.createdDate}
+                    />
+                    
+                </>
             ))}
         </div>
     );

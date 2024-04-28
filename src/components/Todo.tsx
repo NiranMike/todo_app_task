@@ -13,16 +13,17 @@ import toast from "react-hot-toast"
     editTodo: typeof editTodo;
     deleteTodoAction: typeof deleteTodoAction;
     completeTodoAction: typeof completeTodoAction;
-    completed: boolean
+    completed: boolean;
+    createdDate: string | undefined;
   }
-const Todo = ({ text, editTodo, deleteTodoAction,completeTodoAction, id, completed }: TodoType) => {
+const Todo = ({ text, editTodo, deleteTodoAction,completeTodoAction, id, completed, createdDate }: TodoType) => {
   
   const dispatch = useDispatch();
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedText, setEditedText] = useState(text);
-  const notifyDelete = () => toast("Task Deleted",{icon:<FaRegTrashAlt className='text-red-500' />});
-  const notifySave = () => toast("Saved Changes 📝");
-  const notifyComplete = () => toast("Task Completed \nGood work 👍🏼");
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [editedText, setEditedText] = useState<string>(text);
+  const notifyDelete = () => toast("Task Deleted",{icon:<FaRegTrashAlt className='text-red-500' />, duration:1000});
+  const notifySave = () => toast("Saved Changes 📝", {duration:1000});
+  const notifyComplete = () => toast("Task Completed \nGood work 👍🏼", {duration:1000});
 
   const handleEdit = () => {
         setIsEditing(true);
@@ -51,7 +52,8 @@ const Todo = ({ text, editTodo, deleteTodoAction,completeTodoAction, id, complet
     };
 
     return (
-        <div className='p-3 flex lg:flex-row flex-col lg:justify-between gap-2 lg:items-center bg-[#B380DA] border-[1px] cursor-pointer border-black rounded-[12px] hover:border-b-[6px] transition-all'>
+        <>
+            <div className='p-3 flex lg:flex-row flex-col lg:justify-between gap-2 lg:items-center bg-[#B380DA] border-[1px] cursor-pointer border-black rounded-[12px] hover:border-b-[6px] transition-all'>
             {isEditing ? (
                 <input
                     type='text'
@@ -93,6 +95,8 @@ const Todo = ({ text, editTodo, deleteTodoAction,completeTodoAction, id, complet
                 </div>
             </div>
         </div>
+        <p>{createdDate}</p>
+        </>
     );
 };
 

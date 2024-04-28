@@ -8,7 +8,7 @@ export const initialState = {
     todos: initialTodos
 };
 
-const todoReducer = (state = initialState, action: TodoActionTypes): { todos: TodoType[] } => {
+const todoReducer = (state = initialState, action: TodoActionTypes) => {
     switch (action.type) {
         case ADD_TODO:
             const newAddTodos = [...state.todos, action.payload];

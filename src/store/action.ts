@@ -8,7 +8,7 @@ export interface TodoType{
     id: number;
     text: string;
     completed?: boolean;
-    createdDate?: Date;
+    createdDate?: string | undefined;
 }
 
 export interface TodoState {
